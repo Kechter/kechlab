@@ -1,12 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { SupabaseService } from './supabase.service';
+import { AccountComponent } from './account/account.component';
+import { LoginComponent } from './login/login.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [AccountComponent, LoginComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'kechlab';
+  title = 'Kechlab';
+  session: any = null;
+
+  constructor(private readonly supabase: SupabaseService) {}
+  ngOnInit() {
+    this.session = this.supabase.session;
+    this.supabase.authChanges((_, session) => (this.session = session));
+  }
 }
