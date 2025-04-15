@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SupabaseService } from '../supabase.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   styleUrls: ['./login.component.css'], 
 })
 export class LoginComponent {
@@ -29,7 +30,6 @@ export class LoginComponent {
       const password = this.signInForm.value.password as string;
       const { error } = await this.supabase.signIn(email,password);
       if (error) throw error;
-      alert('Check your email for the login link!');
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);

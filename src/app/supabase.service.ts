@@ -22,6 +22,7 @@ export interface Profile {
 export class SupabaseService {
   private supabase: SupabaseClient;
   _session: AuthSession | null = null;
+  auth: any;
 
   constructor() {
     this.supabase = createClient(
@@ -57,6 +58,10 @@ export class SupabaseService {
 
   signOut() {
     return this.supabase.auth.signOut();
+  }
+
+  signUp(email: string, password: string) {
+    return this.supabase.auth.signUp({ email, password });
   }
 
   updateProfile(profile: Profile) {
