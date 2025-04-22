@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { SupabaseService } from './supabase.service';
-import { AccountComponent } from './account/account.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AccountComponent, CommonModule, RouterModule],
+  imports: [HomeComponent, CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
